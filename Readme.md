@@ -17,7 +17,6 @@ Creating a private key and sending a bitcoin transaction in 30 lines of code
 `bitcoinjs-lib.js` (TODO: a more practical version)
 
 ```js
-
 const { readFileSync } = require('fs')
 const bitcoin = require('bitcore-lib')
 const { PrivateKey, Transaction } = bitcoin
