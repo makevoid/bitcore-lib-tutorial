@@ -1,22 +1,47 @@
-### create a transaction with bitcore lib explained
+# rewrite using a dsl dialect
 
-<!--  
+# TODO: implement DSL, run via opal
 
-# EPISODE 03
+def require(module)
+  # call node's require
+end
 
-(maybe delete 01 and 02 and just publish this)
+def File.read
+  "...."
+end
 
--->
+def bitcore
+  obj = Object.new
+  def obj.private_key
+    "K..."
+  end
+  def obj.transaction
+    "x...."
+  end
+end
 
-code for the episode:
+def bitcore.privatekey
 
-Creating a private key and sending a bitcoin transaction in 30 lines of code
+end
 
-`bitcore-lib.js` (purely didatical version - [this version])
+# ----
 
-`bitcoinjs-lib.js` (TODO: a more practical version)
+# final code:
 
-```js
+bitcore = require('bitcore-lib')
+PrivateKey  = bitcore.private_key
+Transaction = bitcore.transaction
+
+pvt_key_string = File.read.strip()
+pvt_key = PrivateKey.new pvt_key_string
+
+address = pvt_key.toAddress()
+
+puts "private key: ${pvt_key}"
+
+
+# ----
+
 const { readFileSync } = require('fs')
 const bitcoin = require('bitcore-lib')
 const { PrivateKey, Transaction } = bitcoin
@@ -63,12 +88,3 @@ const pushTx    = require('./blockchain-api/push-tx')
     console.error(err)
   }
 })()
-
-```
-
-Creating a private key and sending a bitcoin transaction in 30 lines of code - youtube video explainer (WIP) #coding #bitcoin #tx #utxo #bitcoin-tx #bitcoin-utxo
-
-
----
-
-@makevoid
