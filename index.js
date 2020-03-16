@@ -12,27 +12,34 @@ console.log("address:", address)
 
 // --- 6 lines
 
-const { utxos } = require('blockchain-api-basic')
+// const getUTXOs = require('blockchain-api/get-utxos')
+const getUTXOs = require('./blockchain-api/get-utxos')
 
 ;(async () => {
-  const unspent = await utxos(address)
+  try {
+    let utxos = await getUTXOs({ address })
 
-  console.log("utxos:", unspent)
+    utxos = [ utxos[0] ]
 
-  const amount = 100000 // 100k sats (1mbtc)
+    console.log("utxos:", utxos)
 
-  const tx = new Transaction()
-    .from(unspent)
-    .to(address, amount)
-    .change(address)
-    .fee(1000)
-    .sign(pvtKey)
+    const amount = 10000 // 10k sats (0.1mbtc)
 
-  const txHex = tx.serialize()
+    const tx = new Transaction()
+      .from(utxos)
+      .to(address, amount)
+      .change(address)
+      .fee(1000)
+      .sign(pvtKey)
 
-  console.log("tx:", txHex)
+    const txHex = tx.serialize()
 
-  const { success, txHash } = pushTx(txHex)
-  console.log("success:", success, "txHash:", txHash)
+    console.log("tx:", txHex)
 
+    const { success, txHash } = pushTx(txHex)
+    console.log("success:", success, "txHash:", txHash)
+
+  } catch (err) {
+    console.error(err)
+  }
 })()
