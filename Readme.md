@@ -12,9 +12,9 @@ code for the episode:
 
 Creating a private key and sending a bitcoin transaction in 30 lines of code
 
-bitcore-lib.js (purely didatical version - [this version])
+`bitcore-lib.js` (purely didatical version - [this version])
 
-bitcoinjs-lib.js (TODO: a more practical version)
+`bitcoinjs-lib.js` (TODO: a more practical version)
 
 ```js
 
