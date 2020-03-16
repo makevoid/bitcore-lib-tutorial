@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bitcore-lib": "^8.16.0",
+    "blockchain-api-basic": "^0.4.3"
+  }
+}
