@@ -69,6 +69,7 @@ const pushTx    = require('./blockchain-api/push-tx')
 
 Creating a private key and sending a bitcoin transaction in 30 lines of code - youtube video explainer #coding #bitcoin #tx #utxo #bitcoin-tx #bitcoin-utxo
 
+
 ---
 
 @makevoid
