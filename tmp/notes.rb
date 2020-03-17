@@ -2,6 +2,8 @@
 
 # TODO: implement DSL, run via opal
 
+# current stubs (WIP):
+
 def require(module)
   # call node's require
 end
@@ -12,74 +14,104 @@ end
 
 def bitcore
   obj = Object.new
-  def obj.private_key
+  obj.private_key = -> {
     "K..."
+  }
+  obj.transaction = -> {
+    "x..."
+  }
+end
+
+class PrivateKey
+  def initialize
+
   end
-  def obj.transaction
-    "x...."
+
+  def to_address
+    "1...."
   end
 end
 
-def bitcore.privatekey
+
+class Transaction
+
+  def initialize
+
+  end
+
+  def from(utxos)
+    self
+  end
+
+  def to(address, amount)
+    self
+  end
+
+  def change(amount)
+    self
+  end
+
+  def fee(amount)
+    self
+  end
+
+  def sign(private_key)
+    self
+  end
 
 end
+
+getUTXOs = -> () {
+  Object.new
+}
+
+pushTX = -> () {
+  {
+    success: true,
+    tx_hash: "abcd1234",
+  }
+}
 
 # ----
 
-# final code:
+# final DSL:
 
 bitcore = require('bitcore-lib')
-PrivateKey  = bitcore.private_key
-Transaction = bitcore.transaction
+PrivateKey  = bitcore.private_key.()
+Transaction = bitcore.transaction.()
 
 pvt_key_string = File.read.strip()
 pvt_key = PrivateKey.new pvt_key_string
 
-address = pvt_key.toAddress()
+address = pvt_key.to_address.()
 
-puts "private key: ${pvt_key}"
+puts "private key: #{pvt_key}"
+puts "address: #{address}"
 
+utxos = getUTXOs.(address)
 
-# ----
+utxos = [ utxos[0] ]
 
-const { readFileSync } = require('fs')
-const bitcoin = require('bitcore-lib')
-const { PrivateKey, Transaction } = bitcoin
+puts "utxos: #{utxos}"
 
-const pvtKeyString = readFileSync('./private-key.txt').toString().trim()
-const pvtKey = new PrivateKey(pvtKeyString)
+amount = 10_000 // sats (0.1 mbtc)
 
-const address = pvtKey.toAddress().toString()
-
-console.log("private key:", pvtKey.toString())
-console.log("address:", address)
-
-// --- 6 lines
-
-const getUTXOs  = require('./blockchain-api/get-utxos')
-const pushTx    = require('./blockchain-api/push-tx')
-// const { pushTx, getUTXOs } = require('./blockchain-api') // TODO: NPM MODULE
-
-;(async () => {
-  try {
-    let utxos = await getUTXOs({ address })
-
-    utxos = [ utxos[0] ]
-
-    console.log("utxos:", utxos)
-
-    const amount = 10000 // 10k sats (0.1mbtc)
-
-    const tx = new Transaction()
+tx = Transacttion.new
       .from(utxos)
       .to(address, amount)
       .change(address)
       .fee(1000)
       .sign(pvtKey)
 
-    const txHex = tx.serialize()
+tx_hex = tx.serialize()
 
-    console.log("tx:", txHex)
+puts "tx: #{tx_hex}"
+
+tx_status = pushTx.(txHex)
+
+
+
+
 
     const { success, txHash } = pushTx(txHex)
     console.log("success:", success, "txHash:", txHash)

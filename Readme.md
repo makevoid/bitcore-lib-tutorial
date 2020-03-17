@@ -29,8 +29,6 @@ const address = pvtKey.toAddress().toString()
 console.log("private key:", pvtKey.toString())
 console.log("address:", address)
 
-// --- 6 lines
-
 const getUTXOs  = require('./blockchain-api/get-utxos')
 const pushTx    = require('./blockchain-api/push-tx')
 // const { pushTx, getUTXOs } = require('./blockchain-api') // TODO: NPM MODULE

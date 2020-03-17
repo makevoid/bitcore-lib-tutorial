@@ -10,8 +10,6 @@ const address = pvtKey.toAddress().toString()
 console.log("private key:", pvtKey.toString())
 console.log("address:", address)
 
-// --- 6 lines
-
 // const getUTXOs = require('blockchain-api/get-utxos')
 const getUTXOs = require('./blockchain-api/get-utxos')
 
@@ -19,6 +17,8 @@ const getUTXOs = require('./blockchain-api/get-utxos')
   try {
     let utxos = await getUTXOs({ address })
 
+    // TODO: replace with actual input selection or disable (uncomment)
+    // NOTE: the current code selects always the first spendable input (usually the latest transaction, as it's using the blockchain.info `/unspent` endpoint)
     utxos = [ utxos[0] ]
 
     console.log("utxos:", utxos)
