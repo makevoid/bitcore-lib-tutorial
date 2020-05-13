@@ -1,12 +1,8 @@
-### create a transaction with bitcore lib explained
+### bitcore-lib-tutorial
 
-<!--  
+This sameple code will let you generate a private key, create a transaction and submit it via with bitcore-lib and Javascript
 
-# EPISODE 03
-
-(maybe delete 01 and 02 and just publish this)
-
--->
+---
 
 code for the episode:
 
@@ -14,7 +10,7 @@ Creating a private key and sending a bitcoin transaction in 30 lines of code
 
 `bitcore-lib.js` (purely didatical version - [this version])
 
-`bitcoinjs-lib.js` (TODO: a more practical version)
+`bitcoinjs-lib.js` (TODO: create a more practical version using bitcoinjs-lib or a wrapper)
 
 ```js
 const { readFileSync } = require('fs')
@@ -64,7 +60,7 @@ const pushTx    = require('./blockchain-api/push-tx')
 
 ```
 
-Creating a private key and sending a bitcoin transaction in 30 lines of code - youtube video explainer (WIP) #coding #bitcoin #tx #utxo #bitcoin-tx #bitcoin-utxo
+Creating a private key and sending a bitcoin transaction in 30 lines of code -  #coding #bitcoin #tx #utxo #bitcoin-tx #bitcoin-utxo
 
 
 ---
