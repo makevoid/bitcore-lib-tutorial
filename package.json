@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.21.1",
     "bitcore-lib": "^8.24.1"
   }
 }
