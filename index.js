@@ -10,8 +10,8 @@ const address = pvtKey.toAddress().toString()
 console.log("private key:", pvtKey.toString())
 console.log("address:", address)
 
-// const getUTXOs = require('blockchain-api/get-utxos')
-const getUTXOs = require('./blockchain-api/get-utxos')
+const getUTXOs  = require('./blockchain-api/get-utxos')
+const pushTx    = require('./blockchain-api/push-tx')
 
 ;(async () => {
   try {
